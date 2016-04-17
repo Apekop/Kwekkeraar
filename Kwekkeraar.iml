@@ -30,5 +30,6 @@
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" name="hibernate" level="project" />
     <orderEntry type="library" name="Hibernate 4.2.2-4.2.2" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.38-bin" level="project" />
   </component>
 </module>
