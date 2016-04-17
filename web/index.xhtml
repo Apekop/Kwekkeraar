@@ -12,11 +12,17 @@
          <link href="style/bootstrap.min.css" rel="stylesheet" />
       </h:head>
       <h:body>
+         <!-- Headert -->
          <div class="navbar navbar-default">
             <div class="container">
                <a class="navbar-brand">Kwekkeraar (TM)</a>
                <div class="pull-right">
-                  <h:outputText rendered="#{login.gebruikersnaam != null}" value="#{login.gebruikersnaam}" />
+                  <c:if test="#{login.gebruikersnaam != null}">
+                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Kwak een kwek</a></li>
+                        <li><p class="navbar-text">#{login.gebruikersnaam}</p></li>
+                     </ul>
+                  </c:if>
                   <c:if test="#{login.gebruikersnaam == null}">
                      <h:form>
                         <div class="navbar-form navbar-right">
@@ -32,9 +38,11 @@
             </div>
          </div>
 
+         <!-- Content -->
          <div class="container">
-            <f:subview id="content" />
-            <h:outputText value="Hello, world"/>
+            <c:if test="#{login.gebruikersnaam != null}">
+               <p>Hoi</p>
+            </c:if>
          </div>
       </h:body>
    </f:view>
