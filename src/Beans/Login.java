@@ -1,5 +1,8 @@
 package Beans;
 
+import Entities.Gebruiker;
+import Util.GebruikerCrud;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -13,14 +16,13 @@ public class Login {
     String wachtwoord;
 
     public String CheckValidUser(){
-        if(gebruikersnaam.equals("Bram") &&
-                wachtwoord.equals("Bram")){
-            System.out.println("success");
-            return "success.jsp";
+        Gebruiker gebruiker = GebruikerCrud.getGebruiker(gebruikersnaam);
+        if(wachtwoord.equals(gebruiker.getWachtwoord())){
+            return "index.xhtml";
         }
         else{
-            System.out.println("fail");
-            return "/fail.jsp";
+            gebruikersnaam = null;
+            return "/register.xhtml";
         }
     }
 

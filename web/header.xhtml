@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+>
+<body>
+<ui:composition>
+
+    <div class="navbar navbar-default">
+        <div class="container">
+            <a class="navbar-brand">Kwekkeraar (TM)</a>
+            <div class="pull-right">
+                <c:if test="#{login.gebruikersnaam != null}">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><h:link outcome="kwek" value="Kwekekwekwekwek"/> </li>
+                        <li><p class="navbar-text">#{login.gebruikersnaam}</p></li>
+                    </ul>
+                </c:if>
+                <c:if test="#{login.gebruikersnaam == null}">
+                    <h:form>
+                        <div class="navbar-form navbar-right">
+                            <div class="form-group">
+                                <h:inputText styleClass="form-control" value="#{login.gebruikersnaam}" required="true" a:placeholder="Gebruikersnaam" />
+                                <h:inputSecret styleClass="form-control" value="#{login.wachtwoord}" required="true" a:placeholder="Wachtwoord" />
+                            </div>
+                            <h:commandButton value="Login" action="#{login.CheckValidUser}" styleClass="btn btn-default" />
+                        </div>
+                    </h:form>
+                </c:if>
+            </div>
+        </div>
+    </div>
+
+</ui:composition>
+</body>
+</html>

@@ -7,6 +7,12 @@
         <element id="directory" name="classes">
           <element id="module-output" name="Kwekkeraar" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Java EE 6-Java EE 6" />
+          <element id="library" level="project" name="hibernate" />
+          <element id="library" level="project" name="Hibernate 4.2.2-4.2.2" />
+          <element id="library" level="project" name="mysql-connector-java-5.1.38-bin" />
+        </element>
       </element>
     </root>
   </artifact>
