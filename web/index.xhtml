@@ -18,11 +18,28 @@
 
          <!-- Content -->
          <div class="container">
-            <c:if test="#{login.gebruikersnaam != null}">
-               <ui:insert name="content">
-                  <ui:include src="content.xhtml" />
-               </ui:insert>
-            </c:if>
+            <div class="col-md-9">
+               <c:if test="#{login.gebruiker.gebruikersnaam != null}">
+                  <ui:insert name="content">
+                     <ui:include src="content.xhtml" />
+                  </ui:insert>
+               </c:if>
+               <c:if test="#{login.gebruiker.gebruikersnaam == null}">
+                  <ui:repeat value="#{content.kweksVanIedereen}" var="k">
+                     <div class="jumbotron">
+                        <h3>#{k.afzender}</h3>
+                        <p>#{k.boodschap}</p>
+                     </div>
+                  </ui:repeat>
+               </c:if>
+            </div>
+            <h:form>
+               <div class="col-md-3 btn-group-vertical">
+                     <ui:repeat value="#{content.iedereen}" var="iemand">
+                        <h:commandButton value="Volg #{iemand.gebruikersnaam}" action="#{kwek.volgKwekkeraar(iemand.id)}" styleClass="btn btn-default" />
+                     </ui:repeat>
+               </div>
+            </h:form>
          </div>
       </h:body>
    </f:view>

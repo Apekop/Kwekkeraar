@@ -12,33 +12,21 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class Login {
-    String gebruikersnaam;
-    String wachtwoord;
+    private Gebruiker gebruiker = new Gebruiker();
 
     public String CheckValidUser(){
-        Gebruiker gebruiker = GebruikerCrud.getGebruiker(gebruikersnaam);
-        if(wachtwoord.equals(gebruiker.getWachtwoord())){
+        Gebruiker inlog = GebruikerCrud.getGebruiker(gebruiker.getGebruikersnaam());
+        if(gebruiker.getWachtwoord().equals(inlog.getWachtwoord())){
+            setGebruiker(inlog);
             return "index.xhtml";
         }
         else{
-            gebruikersnaam = null;
+            gebruiker = null;
             return "/register.xhtml";
         }
     }
 
-    public String getGebruikersnaam() {
-        return gebruikersnaam;
-    }
+    public Gebruiker getGebruiker(){ return gebruiker; }
 
-    public void setGebruikersnaam(String gebruikersnaam) {
-        this.gebruikersnaam = gebruikersnaam;
-    }
-
-    public String getWachtwoord() {
-        return wachtwoord;
-    }
-
-    public void setWachtwoord(String wachtwoord) {
-        this.wachtwoord = wachtwoord;
-    }
+    public void setGebruiker(Gebruiker gebruiker){ this.gebruiker = gebruiker; }
 }

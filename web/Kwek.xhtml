@@ -22,12 +22,14 @@
             <h:form>
                 <div class="input-group">
                     <h:inputTextarea styleClass="form-control" value="#{kwek.kwek.boodschap}" a:placeholder="Barst los..." />
-                    <h:selectOneMenu title="foo" value="#{kwek.kwek.dmOntvanger}">
-                        <f:selectItem itemLabel="Iedereen"/>
-                        <c:forEach items="#{content.iedereen}" var="persoon">
-                            <f:selectItem itemLabel="#{persoon.gebruikersnaam}" itemValue="#{persoon.id}"/>
-                        </c:forEach>
-                    </h:selectOneMenu>
+                    <c:if test="#{login.gebruiker.privilege == 'gulden'}">
+                        <h:selectOneMenu title="foo" value="#{kwek.kwek.dmOntvanger}">
+                            <f:selectItem itemLabel="Iedereen"/>
+                            <c:forEach items="#{content.iedereen}" var="persoon">
+                                <f:selectItem itemLabel="#{persoon.gebruikersnaam}" itemValue="#{persoon.id}"/>
+                            </c:forEach>
+                        </h:selectOneMenu>
+                    </c:if>
                 </div>
                 <h:commandButton value="Vertel!" action="#{kwek.plaatsKwek}" styleClass="btn btn-default" />
             </h:form>

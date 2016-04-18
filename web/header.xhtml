@@ -15,18 +15,18 @@
         <div class="container">
             <h:link value="Kwekkeraar (TM)" outcome="/index" styleClass="navbar-brand" />
             <div class="pull-right">
-                <c:if test="#{login.gebruikersnaam != null}">
+                <c:if test="#{login.gebruiker.gebruikersnaam != null}">
                     <ul class="nav navbar-nav navbar-right">
                         <li><h:link outcome="Kwek" value="Kwekekwekwekwek"/> </li>
-                        <li><p class="navbar-text">#{login.gebruikersnaam}</p></li>
+                        <li><p class="navbar-text">#{login.gebruiker.gebruikersnaam}</p></li>
                     </ul>
                 </c:if>
-                <c:if test="#{login.gebruikersnaam == null}">
+                <c:if test="#{login.gebruiker.gebruikersnaam == null}">
                     <h:form>
                         <div class="navbar-form navbar-right">
                             <div class="form-group">
-                                <h:inputText styleClass="form-control" value="#{login.gebruikersnaam}" required="true" a:placeholder="Gebruikersnaam" />
-                                <h:inputSecret styleClass="form-control" value="#{login.wachtwoord}" required="true" a:placeholder="Wachtwoord" />
+                                <h:inputText styleClass="form-control" value="#{login.gebruiker.gebruikersnaam}" required="true" a:placeholder="Gebruikersnaam" />
+                                <h:inputSecret styleClass="form-control" value="#{login.gebruiker.wachtwoord}" required="true" a:placeholder="Wachtwoord" />
                             </div>
                             <h:commandButton value="Login" action="#{login.CheckValidUser}" styleClass="btn btn-default" />
                         </div>

@@ -1,6 +1,7 @@
 package Beans;
 
 import Entities.Gebruiker;
+import Util.GebruikerCrud;
 import Util.Main;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -25,7 +26,7 @@ public class Registreer {
     private Login login;
 
     public String registreer(){
-        if(wachtwoord1 != wachtwoord2) {
+        if(wachtwoord1.equals(wachtwoord2)) {
             Session session = Main.getSession().getSessionFactory().openSession();
             Transaction tran = null;
             try {
@@ -37,7 +38,7 @@ public class Registreer {
                 gebruiker.setGeblokkeerd(false);
                 session.save(gebruiker);
                 tran.commit();
-                login.gebruikersnaam = gebruikersnaam;
+                login.setGebruiker(GebruikerCrud.getGebruiker(gebruikersnaam));
                 return "/index.xhtml";
             } catch (HibernateException e) {
                 tran.rollback();

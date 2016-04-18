@@ -1,10 +1,13 @@
 package Util;
 
 import Entities.Gebruiker;
+import Entities.GebruikerVolgt;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,5 +49,34 @@ public class GebruikerCrud {
         Query query = Main.getSession().createQuery("from Entities.Gebruiker");
         List<Gebruiker> result = query.list();
         return result;
+    }
+
+    public static void volgGebruiker(int eigenId, int vriendId){
+        Transaction tran = null;
+        Session session = Main.getSession();
+        try{
+            tran = session.beginTransaction();
+            GebruikerVolgt volgt = new GebruikerVolgt();
+            volgt.setGebruiker(eigenId);
+            volgt.setVolgtGebruiker(vriendId);
+            session.save(volgt);
+            tran.commit();
+        }catch(HibernateException e){
+            tran.rollback();
+        }finally {
+            session.close();
+        }
+    }
+
+    public static List<Gebruiker> getVrienden(int id){
+        Query query = Main.getSession().createQuery("select gebruiker.volgtGebruiker from Entities.GebruikerVolgt as gebruiker where gebruiker.gebruiker = :id");
+        query.setParameter("id", id);
+        List<Integer> vriendIds = query.list();
+        List<Gebruiker> vrienden = new ArrayList<>();
+        for (int vriendId :
+                vriendIds) {
+            vrienden.add(GebruikerCrud.getGebruiker(vriendId));
+        }
+        return vrienden;
     }
 }

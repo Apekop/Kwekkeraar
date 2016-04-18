@@ -8,6 +8,7 @@ import Util.KwekCrud;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +25,14 @@ public class Content {
     @ManagedProperty(value = "#{login}")
     private Login login;
 
-    public List<Kwek> getKweksVanVrienden() {
+    public List<Kwek> getKweksVanVrienden()
+    {
+        List<Kwek> kweksVanVrienden = new ArrayList<Kwek>();
+        Gebruiker g = GebruikerCrud.getGebruiker(login.getGebruiker().getId());
+        for (Gebruiker vriend :
+                GebruikerCrud.getVrienden(g.getId())) {
+            kweksVanVrienden.addAll(KwekCrud.getKweksVanGebruiker(vriend.getId()));
+        }
         return kweksVanVrienden;
     }
 

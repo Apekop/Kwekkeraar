@@ -20,9 +20,14 @@ public class Kwek {
     private Login login;
 
     public String plaatsKwek(){
-        Gebruiker plaatser = GebruikerCrud.getGebruiker(login.gebruikersnaam);
+        Gebruiker plaatser = login.getGebruiker();
         kwek.setAfzender(plaatser.getId());
         KwekCrud.plaatsKwek(kwek);
+        return "/index.xhtml";
+    }
+
+    public String volgKwekkeraar(int id){
+        GebruikerCrud.volgGebruiker(login.getGebruiker().getId(), id);
         return "/index.xhtml";
     }
 

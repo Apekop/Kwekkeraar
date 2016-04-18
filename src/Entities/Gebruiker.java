@@ -1,9 +1,13 @@
 package Entities;
 
+import Util.KwekCrud;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by bram_ on 14-4-2016.
@@ -15,6 +19,7 @@ public class Gebruiker {
     private String wachtwoord;
     private String privilege;
     private boolean geblokkeerd;
+    //private List<Kwek> kweks = new ArrayList<>();
 
     @Id
     @Column(name = "id")
