@@ -2,6 +2,8 @@ package Beans;
 
 import Entities.Gebruiker;
 import Entities.Kwek;
+import Util.GebruikerCrud;
+import Util.KwekCrud;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -27,15 +29,17 @@ public class Content {
     }
 
     public List<Kwek> getKweksVanIedereen() {
-
-        return kweksVanIedereen;
+        return KwekCrud.getAlleKweks();
     }
 
     public List<Gebruiker> getVrienden() {
         return vrienden;
     }
 
-    public List<Gebruiker> getIedereen() {
-        return iedereen;
+    public List<Gebruiker> getIedereen()
+    {
+        return GebruikerCrud.getAlleGebruikers();
     }
+
+    public void setLogin(Login login){ this.login = login; }
 }
